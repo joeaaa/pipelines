@@ -2,18 +2,19 @@
 
 ./gradlew dist
 
-if [ ! -d ../squonk/data/testfiles/docker-services ]; then
-        echo "creating docker-services dir"
-        mkdir ../squonk/data/testfiles/docker-services || exit 1
+TEST_DIR=../data/testfiles/docker-services
+if [ ! -d ${TEST_DIR} ]; then
+        echo "Creating docker-services dir (${TEST_DIR})"
+        mkdir ${TEST_DIR} || exit 1
 fi
 
-rm -rf ../squonk/data/testfiles/docker-services/pipelines ../squonk/data/testfiles/docker-services/nextflow
-cp -r build/dist/pipelines ../squonk/data/testfiles/docker-services/ 
-cp -r build/dist/nextflow ../squonk/data/testfiles/docker-services/
-echo "Files copied to ../squonk/data/testfiles/docker-services/"
+rm -rf ${TEST_DIR}/pipelines ${TEST_DIR}/nextflow
+cp -r build/dist/pipelines ${TEST_DIR}
+cp -r build/dist/nextflow ${TEST_DIR}
+echo "Files copied to ${TEST_DIR}"
 
-rm -rf ../squonk/docker/deploy/data/docker-services/pipelines ../squonk/docker/deploy/data/docker-services/nextflow
-cp -r build/dist/pipelines ../squonk/docker/deploy/data/docker-services/
-cp -r build/dist/nextflow ../squonk/docker/deploy/data/docker-services/
-echo "Files copied to ../squonk/docker/deploy/data/docker-services/"
-
+DEPLOY_DIR=../docker/deploy/data/docker-services
+rm -rf ${DEPLOY_DIR}/pipelines ${DEPLOY_DIR}/nextflow
+cp -r build/dist/pipelines ${DEPLOY_DIR}
+cp -r build/dist/nextflow ${DEPLOY_DIR}
+echo "Files copied to ${DEPLOY_DIR}"
