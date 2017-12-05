@@ -3,14 +3,15 @@
 ./gradlew dist
 
 TEST_DIR=../data/testfiles/docker-services
-DEPLOY_DIR=../docker/deploy/data/docker-services
 if [ ! -d ${TEST_DIR} ]; then
         echo "Creating docker-services dir (${TEST_DIR})"
-        mkdir ${TEST_DIR} || exit 1
+        mkdir -p ${TEST_DIR} || exit 1
 fi
+
+DEPLOY_DIR=../docker/deploy/data/docker-services
 if [ ! -d ${DEPLOY_DIR} ]; then
         echo "Creating docker-services dir (${DEPLOY_DIR})"
-        mkdir ${DEPLOY_DIR} || exit 1
+        mkdir -p ${DEPLOY_DIR} || exit 1
 fi
 
 rm -rf ${TEST_DIR}/pipelines ${TEST_DIR}/nextflow
